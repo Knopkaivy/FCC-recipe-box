@@ -1,0 +1,9 @@
+.Header {
+  height: 6rem;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.Header__logo {
+  font-size: 2.4rem;
+}
