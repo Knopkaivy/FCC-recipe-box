@@ -1,18 +1,19 @@
 import React from 'react';
+import { useRecipe } from '../contexts/RecipesContext';
 import '../styles/RecipeList.css';
 
 const RecipeList = () => {
-  const items = ['one', 'two', 'three'];
-  const recipes = items.map((item, i) => {
+  const { recipes } = useRecipe();
+  const recipesList = recipes.map((item, i) => {
     return (
-      <li key={i} className="RecipeList__item">
-        {item}
+      <li key={item.id} className="RecipeList__item">
+        {item.name}
       </li>
     );
   });
   return (
     <aside className="RecipeList">
-      <ul>{recipes}</ul>
+      <ul>{recipesList}</ul>
     </aside>
   );
 };

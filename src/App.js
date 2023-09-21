@@ -1,3 +1,4 @@
+import { RecipesProvider } from './contexts/RecipesContext';
 import Footer from './components/Footer';
 import Header from './components/Header';
 import RecipeForm from './components/RecipeForm';
@@ -9,10 +10,12 @@ function App() {
     <div className="App">
       <Header />
       <div className="App__main">
-        <RecipeList />
-        <section className="App__recipeContainer">
-          <RecipeForm />
-        </section>
+        <RecipesProvider>
+          <RecipeList />
+          <section className="App__recipeContainer">
+            <RecipeForm />
+          </section>
+        </RecipesProvider>
       </div>
       <Footer />
     </div>

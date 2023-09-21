@@ -1,9 +1,12 @@
 import React, { useRef, useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
+import { useRecipe } from '../contexts/RecipesContext';
 import '../styles/RecipeForm.css';
 
 const RecipeForm = () => {
   const ingredientRef = useRef(null);
   const directionRef = useRef(null);
+  const { recipes, addRecipe, updateRecipe } = useRecipe();
 
   const [name, setName] = useState('');
   const [currentIngredient, setCurrentIngredient] = useState('');
@@ -30,9 +33,10 @@ const RecipeForm = () => {
   };
   const handleKeyDown = (event) => {
     if (event.key === 'Enter') {
-      if (event.target.id === 'ingredients') {
+      event.preventDefault();
+      if (event.target.id === 'ingredients' && currentIngredient !== '') {
         handleAddIngredient();
-      } else if (event.target.id === 'directions') {
+      } else if (event.target.id === 'directions' && currentDirection !== '') {
         handleAddDirection();
       } else {
         return;
@@ -51,7 +55,15 @@ const RecipeForm = () => {
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
-    // TODO create new recipe card
+    const newRecipe = {
+      name,
+      id: uuidv4(),
+      ingredients: ingredientsArr,
+      directions: directionsArr,
+    };
+    // TODO add card to list
+    addRecipe(newRecipe);
+    alert(`${name} recipe card has been added to the list`);
     resetFormData();
   };
 
@@ -65,7 +77,9 @@ const RecipeForm = () => {
         onChange={(e) => setName(e.target.value)}
       />
       <label htmlFor="ingredients">Ingredients</label>
-      <ul className="RecipeForm__ingredientsList">{ingredientsList}</ul>
+      {ingredientsArr.length > 0 && (
+        <ul className="RecipeForm__ingredientsList">{ingredientsList}</ul>
+      )}
       <input
         type="text"
         id="ingredients"
@@ -78,7 +92,9 @@ const RecipeForm = () => {
         Add
       </button>
       <label htmlFor="directions">Directions</label>
-      <ol className="RecipeForm__directionsList">{directionsList}</ol>
+      {directionsArr.length > 0 && (
+        <ol className="RecipeForm__directionsList">{directionsList}</ol>
+      )}
       <input
         type="text"
         id="directions"
