@@ -1,0 +1,9 @@
+.RecipeListItem {
+  border-bottom: 2px solid white;
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+.RecipeListItem__name {
+  flex-grow: 1;
+}

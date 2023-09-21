@@ -8,7 +8,7 @@
 .App__main {
   display: flex;
   flex-direction: row;
-  gap: 2rem;
+  gap: 4rem;
 }
 .App__recipeContainer {
   width: 100%;

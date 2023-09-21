@@ -1,5 +1,8 @@
 .RecipeList {
-  background-color: salmon;
   flex-basis: 30%;
   font-size: 2rem;
+}
+.RecipeList__ul {
+  list-style: none;
+  padding: 0;
 }
