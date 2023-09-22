@@ -1,19 +1,33 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { AiOutlinePlus } from 'react-icons/ai';
 import { useRecipe } from '../contexts/RecipesContext';
 import '../styles/RecipeForm.css';
 
-const RecipeForm = () => {
+const RecipeForm = ({ currentId, editModeOn, setCurrentId, setEditModeOn }) => {
   const ingredientRef = useRef(null);
   const directionRef = useRef(null);
   const { recipes, addRecipe, updateRecipe } = useRecipe();
 
+  const [currentItem, setCurrentItem] = useState(
+    recipes.find((item) => item.id === currentId)
+  );
+
   const [name, setName] = useState('');
+  const [id, setId] = useState(uuidv4());
   const [currentIngredient, setCurrentIngredient] = useState('');
   const [ingredientsArr, setIngredientsArr] = useState([]);
   const [currentDirection, setCurrentDirection] = useState('');
   const [directionsArr, setDirectionsArr] = useState([]);
+
+  useEffect(() => {
+    if (editModeOn) {
+      setName(currentItem.name);
+      setId(currentItem.id);
+      setIngredientsArr(currentItem.ingredients);
+      setDirectionsArr(currentItem.directions);
+    }
+  }, [editModeOn]);
 
   const ingredientsList = ingredientsArr.map((item, i) => {
     return <li key={i}>{item}</li>;
@@ -62,13 +76,19 @@ const RecipeForm = () => {
     event.preventDefault();
     const newRecipe = {
       name,
-      id: uuidv4(),
+      id,
       ingredients: ingredientsArr,
       directions: directionsArr,
     };
-    addRecipe(newRecipe);
-    alert(`${name} recipe card has been added to the list`);
-    resetFormData();
+    if (recipes.some((item) => item.id === id)) {
+      updateRecipe(newRecipe);
+      setEditModeOn(false);
+      setCurrentItem(newRecipe);
+    } else {
+      addRecipe(newRecipe);
+      alert(`${name} recipe card has been added to the list`);
+      resetFormData();
+    }
   };
 
   return (
@@ -126,7 +146,7 @@ const RecipeForm = () => {
           <AiOutlinePlus />
         </button>
       </div>
-      <input type="submit" className="RecipeForm__button" value="Create" />
+      <input type="submit" className="RecipeForm__button" value="Submit" />
     </form>
   );
 };

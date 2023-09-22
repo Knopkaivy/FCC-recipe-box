@@ -1,9 +1,21 @@
 export const initialState = {
   recipes: [
     {
-      name: 'Recipe one',
+      name: 'Chicken',
       id: 1,
-      ingredients: ['ingredient one', 'ingredient 2', 'ingredinet 3'],
+      ingredients: ['chicken', 'seasoning', 'broccoli'],
+      directions: ['Step 1', 'Step 2', 'Step 3'],
+    },
+    {
+      name: 'Steak',
+      id: 2,
+      ingredients: ['rib eye steak', 'butter', 'garlic'],
+      directions: ['Step 1', 'Step 2', 'Step 3'],
+    },
+    {
+      name: 'Cake',
+      id: 3,
+      ingredients: ['flour', 'cocoa powder', 'egg', 'sugar'],
       directions: ['Step 1', 'Step 2', 'Step 3'],
     },
   ],
