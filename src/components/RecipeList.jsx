@@ -9,7 +9,6 @@ const RecipeList = ({ setCurrentId, setEditModeOn }) => {
 
   const handleAddRecipe = () => {
     setCurrentId(null);
-    // setEditModeOn(true);
   };
 
   const recipesList = recipes.map((item) => {

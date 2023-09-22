@@ -1,10 +1,10 @@
-import { createContext, useContext, useReducer } from 'react';
-import recipesReducer, { initialState } from '../reducers/recipesReducer';
+import { createContext, useContext } from 'react';
+import { usePersistReducer } from '../hooks/usePersistReducer';
 
 const RecipesContext = createContext();
 
 export const RecipesProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(recipesReducer, initialState);
+  const [state, dispatch] = usePersistReducer();
   const addRecipe = (newRecipe) => {
     dispatch({
       type: 'ADD',
