@@ -42,10 +42,8 @@ const RecipeForm = ({ currentId, editModeOn, setCurrentId, setEditModeOn }) => {
   };
 
   const updateIngredient = (id, newText) => {
-    console.log(ingredientsArr);
     const newArr = ingredientsArr.map((item) => {
       if (item.id === id) {
-        console.log(item, id);
         item.text = newText;
       }
       return item;
@@ -119,7 +117,7 @@ const RecipeForm = ({ currentId, editModeOn, setCurrentId, setEditModeOn }) => {
       setCurrentItem(newRecipe);
     } else {
       addRecipe(newRecipe);
-      alert(`${name} recipe card has been added to the list`);
+      setCurrentId(id);
       resetFormData();
     }
   };
@@ -129,7 +127,6 @@ const RecipeForm = ({ currentId, editModeOn, setCurrentId, setEditModeOn }) => {
       <RecipeFormListItem
         key={item.id}
         item={item}
-        // listName="ingredients"
         updateItem={updateIngredient}
         deleteItem={deleteIngredient}
       />
@@ -140,7 +137,6 @@ const RecipeForm = ({ currentId, editModeOn, setCurrentId, setEditModeOn }) => {
       <RecipeFormListItem
         key={item.id}
         item={item}
-        // listName="directions"
         updateItem={updateDirection}
         deleteItem={deleteDirection}
       />
@@ -156,6 +152,7 @@ const RecipeForm = ({ currentId, editModeOn, setCurrentId, setEditModeOn }) => {
         className="RecipeForm__input"
         value={name}
         onChange={(e) => setName(e.target.value)}
+        required
       />
       <label htmlFor="ingredients">Ingredients</label>
 

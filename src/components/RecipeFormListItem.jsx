@@ -19,6 +19,12 @@ const RecipeFormListItem = ({ item, updateItem, deleteItem }) => {
     updateItem(item.id, val);
     setEditItem(false);
   };
+  const handleKeyDown = (event) => {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      handleUpdateItem();
+    }
+  };
   return (
     <li className="RecipeFormListItem">
       {editItem ? (
@@ -27,6 +33,7 @@ const RecipeFormListItem = ({ item, updateItem, deleteItem }) => {
             type="text"
             value={val}
             onChange={(e) => setVal(e.target.value)}
+            onKeyDown={(e) => handleKeyDown(e)}
           />
           <button type="button" className="btn" onClick={handleUpdateItem}>
             <BsCheck />
