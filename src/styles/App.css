@@ -1,16 +1,17 @@
 .App {
   height: 100vh;
   margin: 0 auto;
-  max-width: 1200px;
+  max-width: 800px;
   position: relative;
   width: 100vw;
 }
-.App__main {
+.App__container {
   display: flex;
   flex-direction: row;
   gap: 4rem;
+  margin-top: 8rem;
 }
-.App__recipeContainer {
+.App__main {
   width: 100%;
   height: 100%;
 }

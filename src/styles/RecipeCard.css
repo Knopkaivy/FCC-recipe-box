@@ -1,0 +1,24 @@
+.RecipeCard {
+  font-size: 1.8rem;
+}
+.RecipeCard__header {
+  color: var(--color-red);
+  margin-top: 0;
+}
+.RecipeCard__buttonContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  gap: 2rem;
+}
+.RecipeCard__button {
+  width: 12rem;
+  color: white;
+}
+.RecipeCard__button--red {
+  background-color: var(--color-red);
+}
+.RecipeCard__button--blue {
+  background-color: var(--color-blue);
+  border-color: var(--color-blue) !important;
+}

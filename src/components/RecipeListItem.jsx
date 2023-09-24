@@ -2,9 +2,16 @@ import React from 'react';
 
 import '../styles/RecipeListItem.css';
 
-const RecipeListItem = ({ item, setCurrentId }) => {
+const RecipeListItem = ({ active, item, setCurrentId, setEditModeOn }) => {
+  const handleSelectItem = () => {
+    setEditModeOn(false);
+    setCurrentId(item.id);
+  };
   return (
-    <li className="RecipeListItem" onClick={() => setCurrentId(item.id)}>
+    <li
+      className={`RecipeListItem ${active && 'RecipeListItem--active'}`}
+      onClick={handleSelectItem}
+    >
       {item.name}
     </li>
   );

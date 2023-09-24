@@ -10,25 +10,37 @@ const RecipeCard = ({ currentId, setCurrentId, setEditModeOn }) => {
   useEffect(() => {
     setCurrentItem(recipes.find((item) => item.id === currentId));
   }, [currentId]);
-  const ingredientsList = currentItem.ingredients.map((ing, i) => {
-    return <li key={i}>{ing}</li>;
+  const ingredientsList = currentItem.ingredients.map((ing) => {
+    return <li key={ing.id}>{ing.text}</li>;
   });
-  const directionsList = currentItem.directions.map((direction, i) => {
-    return <li key={i}>{direction}</li>;
+  const directionsList = currentItem.directions.map((direction) => {
+    return <li key={direction.id}>{direction.text}</li>;
   });
   const handleRemoveRecipe = () => {
     removeRecipe(currentItem);
     setCurrentId(null);
   };
   return (
-    <div>
-      <h2>{currentItem.name}</h2>
+    <div className="RecipeCard">
+      <h2 className="RecipeCard__header">{currentItem.name}</h2>
       <h3>Ingredients:</h3>
       <ul>{ingredientsList}</ul>
       <h3>Directions:</h3>
       <ol>{directionsList}</ol>
-      <button onClick={() => setEditModeOn(true)}>Edit</button>
-      <button onClick={handleRemoveRecipe}>Delete</button>
+      <div className="RecipeCard__buttonContainer">
+        <button
+          className="RecipeCard__button RecipeCard__button--blue btn"
+          onClick={() => setEditModeOn(true)}
+        >
+          Edit
+        </button>
+        <button
+          className="RecipeCard__button RecipeCard__button--red btn"
+          onClick={handleRemoveRecipe}
+        >
+          Delete
+        </button>
+      </div>
     </div>
   );
 };

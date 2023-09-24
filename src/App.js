@@ -13,13 +13,14 @@ function App() {
   return (
     <div className="App">
       <Header />
-      <div className="App__main">
+      <div className="App__container">
         <RecipesProvider>
           <RecipeList
+            currentId={currentId}
             setCurrentId={setCurrentId}
             setEditModeOn={setEditModeOn}
           />
-          <section className="App__recipeContainer">
+          <main className="App__main">
             {editModeOn || currentId === null ? (
               <RecipeForm
                 currentId={currentId}
@@ -34,7 +35,7 @@ function App() {
                 setEditModeOn={setEditModeOn}
               />
             )}
-          </section>
+          </main>
         </RecipesProvider>
       </div>
       <Footer />

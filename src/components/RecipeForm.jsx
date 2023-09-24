@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { AiOutlinePlus } from 'react-icons/ai';
 import { useRecipe } from '../contexts/RecipesContext';
+import RecipeFormListItem from './RecipeFormListItem';
 import '../styles/RecipeForm.css';
 
 const RecipeForm = ({ currentId, editModeOn, setCurrentId, setEditModeOn }) => {
@@ -29,26 +30,58 @@ const RecipeForm = ({ currentId, editModeOn, setCurrentId, setEditModeOn }) => {
     }
   }, [editModeOn]);
 
-  const ingredientsList = ingredientsArr.map((item, i) => {
-    return <li key={i}>{item}</li>;
-  });
-  const directionsList = directionsArr.map((item, i) => {
-    return <li key={i}>{item}</li>;
-  });
-
   const handleAddIngredient = () => {
     if (currentIngredient !== '') {
-      setIngredientsArr([...ingredientsArr, currentIngredient]);
+      setIngredientsArr([
+        ...ingredientsArr,
+        { text: currentIngredient, id: uuidv4() },
+      ]);
       setCurrentIngredient('');
     }
     ingredientRef.current.focus();
   };
+
+  const updateIngredient = (id, newText) => {
+    console.log(ingredientsArr);
+    const newArr = ingredientsArr.map((item) => {
+      if (item.id === id) {
+        console.log(item, id);
+        item.text = newText;
+      }
+      return item;
+    });
+    setIngredientsArr(newArr);
+  };
+
+  const deleteIngredient = (id) => {
+    const newArr = ingredientsArr.filter((item) => item.id !== id);
+    setIngredientsArr(newArr);
+  };
+
   const handleAddDirection = () => {
     if (currentDirection !== '') {
-      setDirectionsArr([...directionsArr, currentDirection]);
+      setDirectionsArr([
+        ...directionsArr,
+        { text: currentDirection, id: uuidv4() },
+      ]);
       setCurrentDirection('');
     }
     directionRef.current.focus();
+  };
+
+  const updateDirection = (id, newText) => {
+    const newArr = directionsArr.map((item) => {
+      if (item.id === id) {
+        item.text = newText;
+      }
+      return item;
+    });
+    setDirectionsArr(newArr);
+  };
+
+  const deleteDirection = (id) => {
+    const newArr = directionsArr.filter((item) => item.id !== id);
+    setDirectionsArr(newArr);
   };
   const handleKeyDown = (event) => {
     if (event.key === 'Enter') {
@@ -91,6 +124,29 @@ const RecipeForm = ({ currentId, editModeOn, setCurrentId, setEditModeOn }) => {
     }
   };
 
+  const ingredientsList = ingredientsArr.map((item) => {
+    return (
+      <RecipeFormListItem
+        key={item.id}
+        item={item}
+        // listName="ingredients"
+        updateItem={updateIngredient}
+        deleteItem={deleteIngredient}
+      />
+    );
+  });
+  const directionsList = directionsArr.map((item) => {
+    return (
+      <RecipeFormListItem
+        key={item.id}
+        item={item}
+        // listName="directions"
+        updateItem={updateDirection}
+        deleteItem={deleteDirection}
+      />
+    );
+  });
+
   return (
     <form className="RecipeForm" onSubmit={(e) => handleFormSubmit(e)}>
       <label htmlFor="name">Name</label>
@@ -118,7 +174,7 @@ const RecipeForm = ({ currentId, editModeOn, setCurrentId, setEditModeOn }) => {
         />
         <button
           type="button"
-          className="RecipeForm__button"
+          className="RecipeForm__button btn"
           onClick={handleAddIngredient}
         >
           <AiOutlinePlus />
@@ -140,13 +196,13 @@ const RecipeForm = ({ currentId, editModeOn, setCurrentId, setEditModeOn }) => {
         />
         <button
           type="button"
-          className="RecipeForm__button"
+          className="RecipeForm__button btn"
           onClick={handleAddDirection}
         >
           <AiOutlinePlus />
         </button>
       </div>
-      <input type="submit" className="RecipeForm__button" value="Submit" />
+      <input type="submit" className="RecipeForm__button btn" value="Submit" />
     </form>
   );
 };

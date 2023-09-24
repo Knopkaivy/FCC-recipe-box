@@ -1,5 +1,7 @@
 :root {
-  /* vars */
+  --color-grey-light: #f6f9fa;
+  --color-red: #e1341e;
+  --color-blue: #1ecbe1;
 }
 ::-webkit-scrollbar {
   display: none;
@@ -23,5 +25,38 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: antiquewhite;
+}
+.btn {
+  /* background-color: white; */
+  border: 2px solid var(--color-red);
+  border-radius: 0;
+  cursor: pointer;
+  /* color: inherit; */
+  height: 3.2rem;
+  min-width: 3.2rem;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: 500;
+  transition: all 0.2s ease-in-out;
+}
+.btn:active,
+.btn:focus {
+  background-color: var(--color-blue);
+  outline: none;
+}
+input {
+  border: none;
+  border-bottom: 2px solid var(--color-blue);
+  border-radius: 0;
+  box-sizing: border-box;
+  font-family: inherit;
+  font-size: inherit;
+  height: 3.2rem;
+  padding: 0;
+  width: 32rem;
+  transition: all 0.2s ease-in-out;
+}
+input:focus {
+  outline: none;
+  background-color: var(--color-grey-light);
 }
