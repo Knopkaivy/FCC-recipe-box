@@ -15,10 +15,10 @@
   width: 12rem;
   color: white;
 }
-.RecipeCard__button--red {
+/* .RecipeCard__button--red {
   background-color: var(--color-red);
 }
 .RecipeCard__button--blue {
   background-color: var(--color-blue);
   border-color: var(--color-blue) !important;
-}
+} */

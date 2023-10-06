@@ -25,7 +25,10 @@ const RecipeList = ({ currentId, setCurrentId, setEditModeOn }) => {
   });
   return (
     <aside className="RecipeList">
-      <button className="RecipeList__button btn" onClick={handleAddRecipe}>
+      <button
+        className="RecipeList__button btn btn--white"
+        onClick={handleAddRecipe}
+      >
         Add
       </button>
       <ul className="RecipeList__ul">{recipesList}</ul>

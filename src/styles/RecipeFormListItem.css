@@ -1,8 +1,30 @@
 .RecipeFormListItem {
+  transition: all 0.3s ease-in-out;
+  margin-bottom: 4px;
+  max-width: 36rem;
+
   width: 100%;
 }
+.RecipeFormListItem:hover {
+  background-color: var(--color-grey-light);
+}
+
 .RecipeFormListItem__container {
+  align-items: flex-start;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  overflow: hidden;
+}
+.RecipeFormListItem__text {
+  max-width: 48rem;
+}
+.RecipeFormListItem__btnContainer {
+  display: flex;
+  transform: translate(100px);
+  transition: all 0.5s ease-in-out;
+}
+.RecipeFormListItem:hover .RecipeFormListItem__btnContainer,
+.RecipeFormListItem:focus .RecipeFormListItem__btnContainer {
+  transform: translate(0);
 }

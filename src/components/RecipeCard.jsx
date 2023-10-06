@@ -29,13 +29,13 @@ const RecipeCard = ({ currentId, setCurrentId, setEditModeOn }) => {
       <ol>{directionsList}</ol>
       <div className="RecipeCard__buttonContainer">
         <button
-          className="RecipeCard__button RecipeCard__button--blue btn"
+          className="RecipeCard__button btn btn--blue"
           onClick={() => setEditModeOn(true)}
         >
           Edit
         </button>
         <button
-          className="RecipeCard__button RecipeCard__button--red btn"
+          className="RecipeCard__button btn btn--red"
           onClick={handleRemoveRecipe}
         >
           Delete

@@ -27,11 +27,9 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 .btn {
-  /* background-color: white; */
   border: 2px solid var(--color-red);
   border-radius: 0;
   cursor: pointer;
-  /* color: inherit; */
   height: 3.2rem;
   min-width: 3.2rem;
   font-family: inherit;
@@ -43,6 +41,18 @@ body {
 .btn:focus {
   background-color: var(--color-blue);
   outline: none;
+}
+.btn--blue {
+  background-color: var(--color-blue);
+  border-color: var(--color-blue) !important;
+  color: white;
+}
+.btn--red {
+  background-color: var(--color-red);
+  color: white;
+}
+.btn--white {
+  background-color: white;
 }
 input {
   border: none;

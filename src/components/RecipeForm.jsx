@@ -171,7 +171,7 @@ const RecipeForm = ({ currentId, editModeOn, setCurrentId, setEditModeOn }) => {
         />
         <button
           type="button"
-          className="RecipeForm__button btn"
+          className="btn btn--red"
           onClick={handleAddIngredient}
         >
           <AiOutlinePlus />
@@ -193,13 +193,13 @@ const RecipeForm = ({ currentId, editModeOn, setCurrentId, setEditModeOn }) => {
         />
         <button
           type="button"
-          className="RecipeForm__button btn"
+          className="btn btn--red"
           onClick={handleAddDirection}
         >
           <AiOutlinePlus />
         </button>
       </div>
-      <input type="submit" className="RecipeForm__button btn" value="Submit" />
+      <input type="submit" className="btn btn--red" value="Submit" />
     </form>
   );
 };

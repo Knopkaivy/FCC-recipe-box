@@ -34,17 +34,26 @@ const RecipeFormListItem = ({ item, updateItem, deleteItem }) => {
             value={val}
             onChange={(e) => setVal(e.target.value)}
             onKeyDown={(e) => handleKeyDown(e)}
+            className="input"
           />
-          <button type="button" className="btn" onClick={handleUpdateItem}>
+          <button
+            type="button"
+            className="btn btn--white"
+            onClick={handleUpdateItem}
+          >
             <BsCheck />
           </button>
         </div>
       ) : (
         <div className="RecipeFormListItem__container">
-          <div>{item.text}</div>
-          <div>
-            <MdModeEdit onClick={handleEditItem} />
-            <GrFormClose onClick={handleDeleteItem} />
+          <div className="RecipeFormListItem__text">{item.text}</div>
+          <div className="RecipeFormListItem__btnContainer">
+            <button className="btn btn--blue" onClick={handleEditItem}>
+              <MdModeEdit />
+            </button>
+            <button className="btn btn--red" onClick={handleDeleteItem}>
+              <GrFormClose />
+            </button>
           </div>
         </div>
       )}
